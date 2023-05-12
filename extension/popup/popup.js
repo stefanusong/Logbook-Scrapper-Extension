@@ -8,6 +8,19 @@ const [currentTab] = await chrome.tabs.query({
   currentWindow: true,
 });
 
+const setDefaultMonth = () => {
+  const currentDate = new Date();
+  let currentMonth = currentDate.getMonth();
+
+  // If current date is within the first 10 days of the current month,
+  // use the previous month instead
+  if (currentDate.getDate() <= 10) {
+    currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+  }
+
+  monthsSelect.value = currentMonth + 1;
+};
+
 const setUIBasedOnURL = async () => {
   await chrome.tabs.sendMessage(
     currentTab.id,
@@ -95,4 +108,5 @@ const addListeners = () => {
 };
 
 await setUIBasedOnURL();
+setDefaultMonth();
 addListeners();
