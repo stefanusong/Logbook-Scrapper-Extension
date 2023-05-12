@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Logbook Scrapper",
+  "description": "Binus Enrichment Logbook Scrapper",
+  "version": "1.0",
+  "icons": {
+    "16": "icons/ghost.png",
+    "32": "icons/ghost.png",
+    "48": "icons/ghost.png",
+    "128": "icons/ghost.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/ghost.png",
+      "32": "icons/ghost.png",
+      "48": "icons/ghost.png",
+      "128": "icons/ghost.png"
+    },
+    "default_popup": "./popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": ["./content.js"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "clipboardWrite",
+    "clipboardRead",
+    "storage"
+  ]
+}
